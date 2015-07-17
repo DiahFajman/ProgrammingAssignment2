@@ -1,15 +1,32 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Two functions, one to assigns the inverse to yonder cache, one to pull
 
-## Write a short comment describing this function
+## Gets matrix, sets matrix, inverses matrix.
 
-makeCacheMatrix <- function(x = matrix()) {
+makeCacheMatrix <- function(x = matrix()){
+   m <- NULL
+   set <- function(y){
+                 x <<- y
+                 m <<- NULL
+          }
+   get <- function() x
+   setinverse <- function(solve) m <<- solve
+   getinverse <- function() m
+   list(set=set,get=get,setinverse=setinverse,getinverse=getinverse)
+} 
 
-}
 
 
-## Write a short comment describing this function
+## Pulls from cache is possible.
 
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+
+cacheSolve <- function(x=matrix(),...){
+   m<-x$getinverse()
+   if(!is.null(m)){
+   message("getting cached data")
+   return(m)
+   }
+   matrixtosolve<-x$get()
+   m<-solve(matrixtosolve,...)
+   x$setinverse(m)
+   m
 }
