@@ -16,7 +16,7 @@ makeCacheMatrix <- function(x = matrix()){
 
 
 
-## Pulls from cache is possible.
+## Pulls from cache if possible.
 
 
 cacheSolve <- function(x=matrix(),...){
